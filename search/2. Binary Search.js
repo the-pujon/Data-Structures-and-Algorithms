@@ -20,7 +20,7 @@ let example1 = [1, 4, 2, 53, 3, 20, 45];
 //sort array
 example1.sort((a, b) => a - b); //1,2,3,4,20,45,53
 console.log(binarySearch(example1, 5)); // -1
-console.log(binarySearch(example1, 4)); // 1
+console.log(binarySearch(example1, 4)); // 3
 
 //
 //with recursive function
@@ -46,4 +46,4 @@ const binarySearchRecursive = (
 //sort array
 example1.sort((a, b) => a - b); //1,2,3,4,20,45,53
 console.log(binarySearchRecursive(example1, 5)); // -1
-console.log(binarySearchRecursive(example1, 4)); // 1
+console.log(binarySearchRecursive(example1, 4)); // 3

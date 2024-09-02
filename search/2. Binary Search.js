@@ -4,7 +4,7 @@ const binarySearch = (arr, searchValue) => {
   let end = arr.length - 1;
   let middle = Math.floor((start + end) / 2);
 
-  while (arr[middle] !== searchValue && start >= end) {
+  while (arr[middle] !== searchValue && start <= end) {
     if (arr[middle] < searchValue) start = middle + 1;
     if (arr[middle] > searchValue) end = middle - 1;
     middle = Math.floor((start + end) / 2);
@@ -15,7 +15,7 @@ const binarySearch = (arr, searchValue) => {
 };
 
 //example
-let example1 = [1, 4, 2, 53, 3, 20, 45];
+let example1 = [1, 3, 5, 6];
 
 //sort array
 example1.sort((a, b) => a - b); //1,2,3,4,20,45,53

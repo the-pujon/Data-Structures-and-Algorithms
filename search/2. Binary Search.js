@@ -19,8 +19,8 @@ let example1 = [1, 3, 5, 6];
 
 //sort array
 example1.sort((a, b) => a - b); //1,2,3,4,20,45,53
-console.log(binarySearch(example1, 5)); // -1
-console.log(binarySearch(example1, 4)); // 3
+//console.log(binarySearch(example1, 5)); // -1
+console.log(binarySearch(example1, 7)); // 3
 
 //
 //with recursive function

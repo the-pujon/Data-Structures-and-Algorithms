@@ -8,17 +8,17 @@ function quickSort(arr, si, ei) {
 }
 
 function partition(arr, si, ei) {
-  let pivot = arr[ei];
-  let idx = si - 1;
-  for (let i = si; i < ei; i++) {
-    if (arr[i] <= pivot) {
-      idx++;
+  let pivot = arr[si];
+  let idx = si + 1;
+  for (let i = si + 1; i <= ei; i++) {
+    if (arr[i] < pivot) {
       [arr[idx], arr[i]] = [arr[i], arr[idx]];
+      idx++;
     }
   }
-  idx++;
-  [arr[ei], arr[idx]] = [arr[idx], arr[ei]];
-  return idx;
+  //  idx++;
+  [arr[si], arr[idx - 1]] = [arr[idx - 1], arr[si]];
+  return idx - 1;
 }
 
 const arr = [3, 6, 2, 7, 1];

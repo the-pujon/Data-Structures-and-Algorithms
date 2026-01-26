@@ -1,28 +1,27 @@
-function quickSort(arr, si, ei) {
-  if (si < ei) {
-    let pi = partition(arr, si, ei);
-    quickSort(arr, si, pi - 1);
-    quickSort(arr, pi + 1, ei);
-  }
-  return arr;
-}
+function partition(arr, start, end) {
+  let idx = start - 1;
+  let pivot = arr[end];
 
-function partition(arr, si, ei) {
-  let pivot = arr[si];
-  let idx = si + 1;
-  for (let i = si + 1; i <= ei; i++) {
+  for (let i = start; i < end; i++) {
     if (arr[i] < pivot) {
-      [arr[idx], arr[i]] = [arr[i], arr[idx]];
       idx++;
+      [arr[i], arr[idx]] = [arr[idx], arr[i]];
     }
   }
-  //  idx++;
-  [arr[si], arr[idx - 1]] = [arr[idx - 1], arr[si]];
-  return idx - 1;
+  idx++;
+  [arr[end], arr[idx]] = [arr[idx], arr[end]];
+  return idx;
 }
 
-const arr = [3, 6, 2, 7, 1];
+function quickSort(arr, start, end) {
+  if (start >= end) return;
+  let pivotIdx = partition(arr, start, end);
 
-const sort = quickSort(arr, 0, arr.length - 1);
+  // left
+  quickSort(arr, start, pivotIdx - 1);
+  quickSort(arr, pivotIdx + 1, end);
+}
 
-console.log(sort);
+let arr = [0, 9, 8, 7, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+quickSort(arr, 0, arr.length - 1);
+console.log(arr);

@@ -3,22 +3,27 @@ class Queue {
     this.n = n;
     this.arr = new Array(n);
     this.rear = -1;
+    this.front = -1;
   }
 
   isEmpty() {
-    return this.rear === -1;
+    return this.rear === -1 && this.front === -1;
   }
 
   //basically javascript does not have a fixed size array, but we are simulating it here
   isFull() {
-    return this.rear === this.n - 1;
+    return (this.rear + 1) % this.arr.length === this.front;
   }
 
   push(x) {
     if (this.isFull()) {
       throw "Queue is Full";
     }
-    this.rear++;
+    if (this.front === -1) {
+      this.front = 0;
+    }
+    this.rear = (this.rear + 1) % this.arr.length;
+
     this.arr[this.rear] = x;
 
     console.log(`${x} added to the queue`);
@@ -28,19 +33,23 @@ class Queue {
     if (this.isEmpty()) {
       throw "Queue is empty";
     }
-    const front = this.arr[0];
-    for (let i = 0; i < this.rear; i++) {
-      this.arr[i] = this.arr[i + 1];
+    const result = this.arr[this.front];
+
+    if (this.rear === this.front) {
+      this.rear = -1;
+      this.front = -1;
+    } else {
+      this.front = (this.front + 1) % this.arr.length;
     }
-    this.rear--;
-    return `${front} removed`;
+
+    return `${result} removed`;
   }
 
   peek() {
     if (this.isEmpty()) {
       throw "Queue is empty";
     }
-    return `you are watching ${this.arr[0]}`;
+    return `you are watching ${this.arr[this.front]}`;
   }
 }
 
